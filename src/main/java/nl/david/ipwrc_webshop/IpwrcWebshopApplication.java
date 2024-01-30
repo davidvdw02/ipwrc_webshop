@@ -9,5 +9,4 @@ public class IpwrcWebshopApplication {
     public static void main(String[] args) {
         SpringApplication.run(IpwrcWebshopApplication.class, args);
     }
-
 }
