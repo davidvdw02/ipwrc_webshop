@@ -2,7 +2,9 @@ package nl.david.ipwrc_webshop.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -13,8 +15,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Getter
 @Entity
 @Table(name = "products")
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long productId;
     private String name;
@@ -30,7 +35,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
     private String imageUrl;
-    private boolean available;
+    private boolean available = true;
     private double averageRating;
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
