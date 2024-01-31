@@ -18,32 +18,38 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getAllProducts() {
-
         return this.productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
-    public String getProductById(@PathVariable Long id) {
-        // TODO: Implement logic to retrieve product by ID
-        return "Product with ID: " + id;
+    @GetMapping("/category/{categoryId}")
+    public List<Product> getProductsByCategoryId(@PathVariable Long categoryId) {
+        return this.productService.getProductsByCategoryId(categoryId);
     }
 
-    @PostMapping
-    public String createProduct(@RequestBody Product product) {
-        // TODO: Implement logic to create a new product
-        return "Product created";
-    }
+    
 
-    @PutMapping("/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        // TODO: Implement logic to update an existing product
-        return "Product updated";
-    }
+    // @GetMapping("/{id}")
+    // public String getProductById(@PathVariable Long id) {
+    //     // TODO: Implement logic to retrieve product by ID
+    //     return "Product with ID: " + id;
+    // }
 
-    @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        // TODO: Implement logic to delete a product
-        return "Product deleted";
-    }
+    // @PostMapping
+    // public String createProduct(@RequestBody Product product) {
+    //     // TODO: Implement logic to create a new product
+    //     return "Product created";
+    // }
+
+    // @PutMapping("/{id}")
+    // public String updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    //     // TODO: Implement logic to update an existing product
+    //     return "Product updated";
+    // }
+
+    // @DeleteMapping("/{id}")
+    // public String deleteProduct(@PathVariable Long id) {
+    //     // TODO: Implement logic to delete a product
+    //     return "Product deleted";
+    // }
 }
 

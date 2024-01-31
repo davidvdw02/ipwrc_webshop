@@ -15,6 +15,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public List<Product> getProductsByCategoryId(Long categoryId) {
+        return productRepository.findByCategory_categoryId(categoryId);
+    }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
