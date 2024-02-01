@@ -1,0 +1,8 @@
+version: '1'
+services:
+  ipwrcbackend:
+    image: isensetoxicity/ipwrcbackend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
