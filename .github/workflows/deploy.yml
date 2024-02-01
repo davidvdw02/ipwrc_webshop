@@ -38,4 +38,5 @@ jobs:
           username: root
           key: ${{ secrets.SSH }}
           script: |
+            ssh-keygen -f "/root/.ssh/known_hosts" -R "149.100.156.79"
             ssh -o StrictHostKeyChecking=no root@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
