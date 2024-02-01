@@ -35,7 +35,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 149.100.156.79
-          username: root
+          username: admin
           key: ${{ secrets.SSH }}
           script: |
-            ssh -o StrictHostKeyChecking=no root@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
+            ssh -o StrictHostKeyChecking=no admin@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
