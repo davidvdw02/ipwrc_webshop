@@ -31,11 +31,11 @@ jobs:
       - name: Push Docker Image to Docker Hub
         run: docker push isensetoxicity/ipwrcbackend:latest
 
-     - name: Deploy to Hostinger VPS
-  uses: appleboy/ssh-action@master
-  with:
-    host: 149.100.156.79
-    username: root
-    password: BestPassword123
-    script: |
-      ssh -o StrictHostKeyChecking=no root@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
+      - name: Deploy to Hostinger VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: 149.100.156.79
+          username: root
+          password: BestPassword123
+          script: |
+            ssh -o StrictHostKeyChecking=no root@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
