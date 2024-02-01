@@ -40,4 +40,4 @@ jobs:
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
             docker pull iåsensetoxicity/ipwrcbackend
-             docker-compose up -d
+            docker run -d -p 8080:8080 isensetoxicity/ipwrcbackend:latest
