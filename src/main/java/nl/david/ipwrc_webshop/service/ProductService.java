@@ -87,7 +87,7 @@ public class ProductService {
                 productRepository.deleteById(id);
             } catch (Exception e) {
                 e.printStackTrace();
-                //ci pileline test1
+                //ci pileline test0
             }
         }
     }
