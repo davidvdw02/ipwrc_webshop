@@ -1,24 +1,21 @@
-name: SSH Example
+name: Test SSH Connection
 
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up SSH key
+    - name: Test SSH connection
       run: |
-        echo "${{ secrets.SSH }}" > ~/.ssh/id_rsa
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        mkdir -p ~/.ssh && ssh-keyscan -t rsa 149.100.156.79 >> ~/.ssh/known_hosts
-
-    - name: Deploy using SSH
-      run: |
-        ssh -o StrictHostKeyChecking=no root@149.100.156.79 "echo Hello from the remote server"
+        ssh-keyscan -H 149.100.156.79 >> ~/.ssh/known_hosts
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@149.100.156.79 echo "SSH connection successful"
