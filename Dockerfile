@@ -1,8 +1,8 @@
-FROM adoptopenjdk:17-jre-hotspot
+FROM openjdk:17-jre-slim
 
-WORKDIR /app
+WORKDIR /src
 
-COPY target/your-spring-boot-app.jar app.jar
+COPY ipwrc_webshop.jar app.jar
 
 EXPOSE 8080
 
