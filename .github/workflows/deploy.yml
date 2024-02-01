@@ -6,17 +6,16 @@ on:
       - master
 
 jobs:
-  deploy:
+  test-ssh-connection:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Test SSH connection
-      run: |
-        mkdir -p /github/home/.ssh
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /github/home/.ssh/id_rsa
-        chmod 600 /github/home/.ssh/id_rsa
-        ssh-keyscan -H 149.100.156.79 >> /github/home/.ssh/known_hosts
-        ssh -i /github/home/.ssh/id_rsa -o StrictHostKeyChecking=no root@149.100.156.79 echo "SSH connection successful"
+      - name: Test SSH Connection
+        uses: appleboy/ssh-action@v0.5.0
+        with:
+          host: 149.100.156.79
+          username: root
+          key: ${{ secrets.SSH }}
