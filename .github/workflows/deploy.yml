@@ -1,9 +1,9 @@
 name: Test SSH Connection
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -15,8 +15,7 @@ jobs:
 
     - name: Test SSH connection
       run: |
-        mkdir -p /github/home/.ssh
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /github/home/.ssh/id_rsa
-        chmod 600 /github/home/.ssh/id_rsa
-        ssh-keyscan -H 149.100.156.79 >> /github/home/.ssh/known_hosts
-        ssh -i /github/home/.ssh/id_rsa -o StrictHostKeyChecking=no root@149.100.156.79 echo "SSH connection successful"
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H 149.100.156.79 >> ~/.ssh/known_hosts
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@149.100.156.79 echo "SSH connection successful"
