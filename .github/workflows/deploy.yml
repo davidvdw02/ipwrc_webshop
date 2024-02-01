@@ -1,2 +1,14 @@
-- name: Debug SSH Key
-  run: echo "${{ secrets.SSH }}"
+name: Deploy to Hostinger VPS with Docker
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Debug SSH Key
+      run: echo "${{ secrets.SSH }}"
