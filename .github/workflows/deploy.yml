@@ -36,6 +36,6 @@ jobs:
         with:
           host: 149.100.156.79
           username: root
-          password: BestPassword123
+          key: ${{ secrets.SSH }}
           script: |
             ssh -o StrictHostKeyChecking=no root@149.100.156.79 'docker pull isensetoxicity/ipwrcbackend && docker-compose up -d'
