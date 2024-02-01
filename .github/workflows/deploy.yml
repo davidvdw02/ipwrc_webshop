@@ -27,6 +27,6 @@ jobs:
         with:
           host: 149.100.156.79
           username: root
-          key: ${{ secrets.ssh }}
+          key: ${{ secrets.SSH }}
           script: |
             ssh -o StrictHostKeyChecking=no root@149.100.156.79 'bash -s' < deploy.sh
