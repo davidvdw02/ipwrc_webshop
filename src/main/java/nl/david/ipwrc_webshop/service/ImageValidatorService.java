@@ -14,7 +14,7 @@ public class ImageValidatorService {
         return isBase64Png(base64Image)&& hasPngExtension(base64Image);
     }
    
-   private static boolean isBase64Png(String base64Image) {
+   static boolean isBase64Png(String base64Image) {
         try {
             String base64Data = base64Image.split(",")[1];
             if (base64Data.length() % 4 != 0) {
