@@ -3,6 +3,8 @@ import nl.david.ipwrc_webshop.DTO.AddProductDTO;
 import nl.david.ipwrc_webshop.model.Product;
 import nl.david.ipwrc_webshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,9 +18,11 @@ import java.util.UUID;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ResourceLoader resourceLoader;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ResourceLoader resourceLoader) {
         this.productRepository = productRepository;
+        this.resourceLoader = resourceLoader;
     }
 
     public List<Product> getProductsByCategoryId(Long categoryId) {
@@ -69,6 +73,21 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            String[] imageUrlParts = product.getImageUrl().split("/");
+            String filename = imageUrlParts[imageUrlParts.length - 1];
+            System.out.println(filename);
+            Resource resource = resourceLoader.getResource("classpath:/static/"+filename);
+            try {
+                System.out.println(resource.getURI());
+                System.out.println(resource.getFile());
+                resource.getFile().delete();
+                productRepository.deleteById(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -61,10 +61,9 @@ public class ProductController {
     //     return "Product updated";
     // }
 
-    // @DeleteMapping("/{id}")
-    // public String deleteProduct(@PathVariable Long id) {
-    //     // TODO: Implement logic to delete a product
-    //     return "Product deleted";
-    // }
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        this.productService.deleteProduct(id);
+    }
 }
 
