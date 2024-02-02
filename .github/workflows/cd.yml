@@ -1,7 +1,7 @@
 name: Deploy to Hostinger VPS with Docker
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -28,8 +28,10 @@ jobs:
           username: isensetoxicity  
           password: TijdelijkWachtwoord
 
-      - name: Push Docker Image to Docker Hub
-        run: docker push isensetoxicity/ipwrcbackend:latest
+      - name: Push Docker Image to Docker Hub with tag 'backend'
+        run: |
+          docker tag isensetoxicity/ipwrcbackend isensetoxicity/ipwrcbackend:backend
+          docker push isensetoxicity/ipwrcbackend:backend
 
       - name: Deploy to Hostinger VPS
         uses: appleboy/ssh-action@master
@@ -39,7 +41,7 @@ jobs:
           key: ${{ secrets.SSH }}
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
-            docker pull isensetoxicity/ipwrcbackend
+            docker pull isensetoxicity/ipwrcbackend:backend
             docker stop ipwrcbackend || true
             docker rm ipwrcbackend || true
-            docker run -d -p 8080:8080 --network=postgres-network --name ipwrcbackend isensetoxicity/ipwrcbackend:latest
+            docker run -d -p 8080:8080 --network=postgres-network --name ipwrcbackend isensetoxicity/ipwrcbackend:backend
