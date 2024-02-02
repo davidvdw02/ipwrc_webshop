@@ -40,4 +40,4 @@ jobs:
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
             docker pull isensetoxicity/ipwrcbackend
-            docker start -d -p 8080:8080 --network=postgres-network --name backend ßisensetoxicity/ipwrcbackend:latest
+            docker run -d -p 8080:8080 --network=postgres-network --name backend ßisensetoxicity/ipwrcbackend:latest
