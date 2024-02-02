@@ -24,10 +24,10 @@ public class CategoryController {
     //     return categoryService.getCategoryById(id);
     // }
 
-    // @PostMapping
-    // public Category createCategory(@RequestBody Category category) {
-    //     return categoryService.createCategory(category);
-    // }
+    @PostMapping
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
+    }
 
     // @PutMapping("/{id}")
     // public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
