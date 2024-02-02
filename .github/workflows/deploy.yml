@@ -38,9 +38,6 @@ jobs:
           username: root
           key: ${{ secrets.SSH }}
           script: |
-            PROJECT_PATH=$(pwd)
-            echo "Current working directory: $PROJECT_PATH"
-
             docker login -u isensetoxicity -p TijdelijkWachtwoord
             docker pull isensetoxicity/ipwrcbackend
-            docker-compose -f "$PROJECT_PATH/docker-compose.yml" up -d
+            docker compose up -d
