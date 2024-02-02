@@ -39,5 +39,5 @@ jobs:
           key: ${{ secrets.SSH }}
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
-            docker pull iåsensetoxicity/ipwrcbackend
-            docker compuse up
+            docker pull isensetoxicity/ipwrcbackend
+            docker compose up -d
