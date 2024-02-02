@@ -1,7 +1,7 @@
 name: Deploy to Hostinger VPS with Docker
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -40,4 +40,4 @@ jobs:
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
             docker pull isensetoxicity/ipwrcbackend
-            docker run -d -p 8080:8080 --network=postgres-network isensetoxicity/ipwrcbackend:latest
+            docker start -d -p 8080:8080 --network=postgres-network --name backend ßisensetoxicity/ipwrcbackend:latest
