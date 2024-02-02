@@ -42,6 +42,6 @@ jobs:
           script: |
             docker login -u isensetoxicity -p TijdelijkWachtwoord
             docker pull isensetoxicity/ipwrcbackend:backend
-            docker stop $(docker ps -q --filter "ancestor=isensetoxicity/ipwrcbackend:backend") || true
-            docker rm $(docker ps -aq --filter "ancestor=isensetoxicity/ipwrcbackend:backend") || true
+            docker stop ipwrcbackend || true
+            docker rmipwrcbackend || true
             docker run -d -p 8080:8080 --network=postgres-network --name ipwrcbackend isensetoxicity/ipwrcbackend:backend
