@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY --from=build /app/target/ipwrc_webshop-0.0.1-SNAPSHOT.jar app.jar
 
-EXPOSE 8080
+EXPOSE 8081
 EXPOSE 8443  
 
 CMD ["java", "-jar", "app.jar"]
