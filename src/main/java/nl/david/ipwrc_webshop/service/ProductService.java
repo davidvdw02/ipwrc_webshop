@@ -67,7 +67,6 @@ public class ProductService {
             outputStream.close();
             return true;
         } catch (Exception e) {
-            System.out.println("message: " + e.getMessage());
             e.printStackTrace();
            return false;
         }
@@ -79,11 +78,8 @@ public class ProductService {
             Product product = optionalProduct.get();
             String[] imageUrlParts = product.getImageUrl().split("/");
             String filename = imageUrlParts[imageUrlParts.length - 1];
-            System.out.println(filename);
             Resource resource = resourceLoader.getResource("classpath:/static/"+filename);
             try {
-                System.out.println(resource.getURI());
-                System.out.println(resource.getFile());
                 resource.getFile().delete();
                 productRepository.deleteById(id);
             } catch (Exception e) {
