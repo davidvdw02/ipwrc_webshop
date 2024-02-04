@@ -15,9 +15,9 @@ public class Invoice {
     @OneToOne
     @JoinColumn(name = "order_id", unique = true)
     private Order order;
-@ManyToOne
-@JoinColumn(name = "account_id")
-private Account account;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     private String invoiceAddress;
     private String invoiceCity;

@@ -1,6 +1,5 @@
 package nl.david.ipwrc_webshop.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +30,7 @@ public class Product {
     private Manufacturer manufacturer;
 
     @ManyToOne
-       @JsonBackReference
+    @JsonBackReference
     @JoinColumn(name = "category_id")
     private Category category;
     private String imageUrl;
@@ -42,7 +41,7 @@ public class Product {
 
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private Specifications specifications;
-@ManyToOne
-@JoinColumn(name = "order_id")
-private Order order;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

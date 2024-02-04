@@ -13,7 +13,6 @@ import nl.david.ipwrc_webshop.service.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -33,12 +32,11 @@ public class ProductController {
     public List<Product> getProductsByCategoryId(@PathVariable Long categoryId) {
         return this.productService.getProductsByCategoryId(categoryId);
     }
-    
-    
+
     @PostMapping
     public ResponseEntity<String> createProduct(@RequestBody AddProductDTO addProductRequest) {
-        if(ImageValidatorService.validateImage(addProductRequest.getImage())){
-            if(!productService.validateAndSaveProduct(addProductRequest)){
+        if (ImageValidatorService.validateImage(addProductRequest.getImage())) {
+            if (!productService.validateAndSaveProduct(addProductRequest)) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
             }
             return ResponseEntity.status(HttpStatus.CREATED).body("Product created");
@@ -48,16 +46,15 @@ public class ProductController {
 
     // @GetMapping("/{id}")
     // public String getProductById(@PathVariable Long id) {
-    //     // TODO: Implement logic to retrieve product by ID
-    //     return "Product with ID: " + id;
+    // // TODO: Implement logic to retrieve product by ID
+    // return "Product with ID: " + id;
     // }
 
-
-
     // @PutMapping("/{id}")
-    // public String updateProduct(@PathVariable Long id, @RequestBody Product product) {
-    //     // TODO: Implement logic to update an existing product
-    //     return "Product updated";
+    // public String updateProduct(@PathVariable Long id, @RequestBody Product
+    // product) {
+    // // TODO: Implement logic to update an existing product
+    // return "Product updated";
     // }
 
     @DeleteMapping("/{id}")
@@ -65,4 +62,3 @@ public class ProductController {
         this.productService.deleteProduct(id);
     }
 }
-

@@ -13,4 +13,4 @@ public class AddProductDTO {
     private int quantityInStock;
     private String image;
     private Category category;
-    }
+}
