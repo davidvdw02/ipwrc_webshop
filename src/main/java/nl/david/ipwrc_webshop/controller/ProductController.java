@@ -41,7 +41,7 @@ public class ProductController {
             if(!productService.validateAndSaveProduct(addProductRequest)){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
             }
-            return ResponseEntity.status(HttpStatus.CREATED).body("yep");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Product created");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Image is not a valid base64 png");
     }

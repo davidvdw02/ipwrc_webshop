@@ -47,6 +47,7 @@ public class ProductService {
         product.setDescription(addproductRequest.getDescription());
         product.setPrice(addproductRequest.getPrice());
         product.setQuantityInStock(addproductRequest.getQuantityInStock());
+        product.setCategory(addproductRequest.getCategory());
         String imageName = UUID.randomUUID().toString() + ".png";
         if(!saveImage(addproductRequest.getImage(), imageName)){
             return false;
