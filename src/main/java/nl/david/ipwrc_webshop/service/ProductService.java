@@ -51,7 +51,7 @@ public class ProductService {
         if (!saveImage(addproductRequest.getImage(), imageName)) {
             return false;
         }
-        product.setImageUrl(":8081/static/"+imageName);
+        product.setImageUrl("https:plsvoldoende.nl:8081/static/"+imageName);
         productRepository.save(product);
         return true;
     }
