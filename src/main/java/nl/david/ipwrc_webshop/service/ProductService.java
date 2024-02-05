@@ -60,7 +60,7 @@ public class ProductService {
         try {
             String base64Data = base64Image.replaceAll("^data:[^;]+;base64,", "");
             byte[] imageBytes = Base64.getDecoder().decode(base64Data);
-            String filePath = "/app/images" + fileName;
+            String filePath = "/app/images/" + fileName;
             FileOutputStream outputStream = new FileOutputStream(filePath);
             outputStream.write(imageBytes);
             outputStream.close();
@@ -77,7 +77,7 @@ public class ProductService {
             Product product = optionalProduct.get();
             String[] imageUrlParts = product.getImageUrl().split("/");
             String filename = imageUrlParts[imageUrlParts.length - 1];
-            Resource resource = resourceLoader.getResource("/app/images" + filename);
+            Resource resource = resourceLoader.getResource("/app/images/" + filename);
             try {
                 resource.getFile().delete();
                 productRepository.deleteById(id);
