@@ -51,7 +51,7 @@ public class ProductService {
         if (!saveImage(addproductRequest.getImage(), imageName)) {
             return false;
         }
-        product.setImageUrl("/static/"+imageName);
+        product.setImageUrl("static/"+imageName);
         productRepository.save(product);
         return true;
     }
