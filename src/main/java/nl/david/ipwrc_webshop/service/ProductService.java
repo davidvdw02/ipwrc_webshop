@@ -87,4 +87,8 @@ public class ProductService {
             }
         }
     }
+    public void updateProduct(Long id, Product product) {
+        product.setProductId(id);
+        productRepository.save(product);
+    }
 }

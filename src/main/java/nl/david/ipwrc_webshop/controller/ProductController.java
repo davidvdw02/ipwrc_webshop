@@ -50,12 +50,11 @@ public class ProductController {
     // return "Product with ID: " + id;
     // }
 
-    // @PutMapping("/{id}")
-    // public String updateProduct(@PathVariable Long id, @RequestBody Product
-    // product) {
-    // // TODO: Implement logic to update an existing product
-    // return "Product updated";
-    // }
+    @PutMapping("/{id}")
+    public void updateProduct(@PathVariable Long id, @RequestBody Product
+    product) {
+        this.productService.updateProduct(id, product);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
