@@ -1,4 +1,5 @@
 package nl.david.ipwrc_webshop.service;
+
 import nl.david.ipwrc_webshop.DTO.AddProductDTO;
 import nl.david.ipwrc_webshop.model.Product;
 import nl.david.ipwrc_webshop.repository.ProductRepository;
@@ -12,7 +13,6 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 
 @Service
 public class ProductService {
@@ -41,7 +41,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public boolean validateAndSaveProduct(AddProductDTO addproductRequest){
+    public boolean validateAndSaveProduct(AddProductDTO addproductRequest) {
         Product product = new Product();
         product.setName(addproductRequest.getName());
         product.setDescription(addproductRequest.getDescription());
@@ -49,7 +49,7 @@ public class ProductService {
         product.setQuantityInStock(addproductRequest.getQuantityInStock());
         product.setCategory(addproductRequest.getCategory());
         String imageName = UUID.randomUUID().toString() + ".png";
-        if(!saveImage(addproductRequest.getImage(), imageName)){
+        if (!saveImage(addproductRequest.getImage(), imageName)) {
             return false;
         }
         product.setImageUrl("https:plsvoldoende.nl/static/"+imageName);
@@ -61,14 +61,14 @@ public class ProductService {
         try {
             String base64Data = base64Image.replaceAll("^data:[^;]+;base64,", "");
             byte[] imageBytes = Base64.getDecoder().decode(base64Data);
-            String filePath = "src/main/resources/static/"+fileName;
+            String filePath = "src/main/resources/static/" + fileName;
             FileOutputStream outputStream = new FileOutputStream(filePath);
             outputStream.write(imageBytes);
             outputStream.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-           return false;
+            return false;
         }
     }
 
@@ -78,7 +78,7 @@ public class ProductService {
             Product product = optionalProduct.get();
             String[] imageUrlParts = product.getImageUrl().split("/");
             String filename = imageUrlParts[imageUrlParts.length - 1];
-            Resource resource = resourceLoader.getResource("classpath:/static/"+filename);
+            Resource resource = resourceLoader.getResource("classpath:/static/" + filename);
             try {
                 resource.getFile().delete();
                 productRepository.deleteById(id);
@@ -86,5 +86,10 @@ public class ProductService {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void updateProduct(Long id, Product product) {
+        product.setProductId(id);
+        productRepository.save(product);
     }
 }

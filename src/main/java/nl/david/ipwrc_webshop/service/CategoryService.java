@@ -11,26 +11,26 @@ import nl.david.ipwrc_webshop.model.Category;
 
 @Service
 public class CategoryService {
-        
-        private final CategoryRepository categoryRepository;
 
-        public CategoryService(CategoryRepository categoryRepository) {
-            this.categoryRepository = categoryRepository;
-        }
+    private final CategoryRepository categoryRepository;
 
-        public List<Category> getAllCategories() {
-            return categoryRepository.findAll();
-        }
-
-        public Optional<Category> getCategoryById(Long id) {
-            return categoryRepository.findById(id);
-        }
-
-        public Category createCategory(Category category) {
-            return categoryRepository.save(category);
-        }
-
-        public void deleteCategory(Long id) {
-            categoryRepository.deleteById(id);
-        }
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
+
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    public Optional<Category> getCategoryById(Long id) {
+        return categoryRepository.findById(id);
+    }
+
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
+}
