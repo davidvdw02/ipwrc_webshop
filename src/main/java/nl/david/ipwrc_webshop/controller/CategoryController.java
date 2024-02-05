@@ -1,4 +1,5 @@
 package nl.david.ipwrc_webshop.controller;
+
 import nl.david.ipwrc_webshop.service.CategoryService;
 import nl.david.ipwrc_webshop.model.Category;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CategoryController {
 
     // @GetMapping("/{id}")
     // public Category getCategoryById(@PathVariable Long id) {
-    //     return categoryService.getCategoryById(id);
+    // return categoryService.getCategoryById(id);
     // }
 
     @PostMapping
@@ -30,8 +31,9 @@ public class CategoryController {
     }
 
     // @PutMapping("/{id}")
-    // public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
-    //     return categoryService.updateCategory(id, category);
+    // public Category updateCategory(@PathVariable Long id, @RequestBody Category
+    // category) {
+    // return categoryService.updateCategory(id, category);
     // }
 
     @DeleteMapping("/{id}")
