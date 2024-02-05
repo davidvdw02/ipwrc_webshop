@@ -19,10 +19,4 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/static/**")
-                .addResourceLocations("/app/images/");
-    }
 }
