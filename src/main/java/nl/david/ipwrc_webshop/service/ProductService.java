@@ -8,7 +8,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +60,7 @@ public class ProductService {
         try {
             String base64Data = base64Image.replaceAll("^data:[^;]+;base64,", "");
             byte[] imageBytes = Base64.getDecoder().decode(base64Data);
-            String filePath = "src/main/resources/static/" + fileName;
+            String filePath = "app/images" + fileName;
             FileOutputStream outputStream = new FileOutputStream(filePath);
             outputStream.write(imageBytes);
             outputStream.close();
@@ -78,7 +77,7 @@ public class ProductService {
             Product product = optionalProduct.get();
             String[] imageUrlParts = product.getImageUrl().split("/");
             String filename = imageUrlParts[imageUrlParts.length - 1];
-            Resource resource = resourceLoader.getResource("classpath:/static/" + filename);
+            Resource resource = resourceLoader.getResource("app/images" + filename);
             try {
                 resource.getFile().delete();
                 productRepository.deleteById(id);

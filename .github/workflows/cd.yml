@@ -46,4 +46,5 @@ jobs:
             docker rm ipwrcbackend || true
             docker run -d -p 8080:8080 -p 8081:8081  --network=postgres-network \
               -v /project/certs:/app/keystore \
+              -v /project/logs:/app/images \
               --name ipwrcbackend ${{ secrets.DOCKER_USERNAME }}/ipwrcbackend:backend
