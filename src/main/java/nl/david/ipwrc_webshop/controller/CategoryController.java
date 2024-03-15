@@ -3,7 +3,7 @@ package nl.david.ipwrc_webshop.controller;
 import nl.david.ipwrc_webshop.service.CategoryService;
 import nl.david.ipwrc_webshop.model.Category;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,7 +18,6 @@ public class CategoryController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
